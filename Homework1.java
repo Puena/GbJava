@@ -38,10 +38,10 @@ public class Homework1 {
         double ans;
         char op;
         Scanner reader = new Scanner(System.in);
-        System.out.print("Enter two numbers: ");
+        System.out.println("Enter two numbers: ");
         num1 = reader.nextDouble();
         num2 = reader.nextDouble();
-        System.out.print("\nEnter an operator (+, -, *, /): ");
+        System.out.println("Enter an operator (+, -, *, /): ");
         op = reader.next().charAt(0);
         switch (op) {
             case '+' -> ans = num1 + num2;
