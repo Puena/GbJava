@@ -1,5 +1,9 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.function.ToDoubleBiFunction;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Homework1 {
     public static void task1(int n){
@@ -33,24 +37,41 @@ public class Homework1 {
         }
     }
 
-    public static void task3(){
+    public static void task3() throws IOException {
         double num1;
         double num2;
         double ans;
         char op;
+        var logger = Logger.getLogger(Homework1.class.getName());
+        var fh = new FileHandler("./");
+        logger.addHandler(fh);
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter two numbers: ");
         num1 = reader.nextDouble();
         num2 = reader.nextDouble();
+        logger.log(Level.INFO, String.format("Enter numbers %d %d", num1, num2));
         System.out.println("Enter an operator (+, -, *, /): ");
         op = reader.next().charAt(0);
         switch (op) {
-            case '+' -> ans = num1 + num2;
-            case '-' -> ans = num1 - num2;
-            case '*' -> ans = num1 * num2;
-            case '/' -> ans = num1 / num2;
+            case '+' -> {
+                ans = num1 + num2;
+                logger.log(Level.INFO, String.format("Add %d %d", num1, num2));
+            }
+            case '-' -> {
+                ans = num1 - num2;
+                logger.log(Level.INFO, String.format("Subtract %d %d", num1, num2));
+            }
+            case '*' -> {
+                ans = num1 * num2;
+                logger.log(Level.INFO, String.format("Multiply %d %d", num1, num2));
+            }
+            case '/' -> {
+                ans = num1 / num2;
+                logger.log(Level.INFO, String.format("Divide %d %d", num1, num2));
+            }
             default -> {
                 System.out.println("Ошибка! Не известный оператор");
+                logger.log(Level.INFO, "Неизвестный оператор");
                 return;
             }
         }
