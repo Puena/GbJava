@@ -49,25 +49,25 @@ public class Homework1 {
         System.out.println("Enter two numbers: ");
         num1 = reader.nextDouble();
         num2 = reader.nextDouble();
-        logger.log(Level.INFO, String.format("Enter numbers %d %d", num1, num2));
-        System.out.println("Enter an operator (+, -, *, /): ");
+        logger.log(Level.INFO, String.format("Enter numbers %f %f", num1, num2));
+        System.out.println("Enter an operator (+ -, *, /): ");
         op = reader.next().charAt(0);
         switch (op) {
             case '+' -> {
                 ans = num1 + num2;
-                logger.log(Level.INFO, String.format("Add %d %d", num1, num2));
+                logger.log(Level.INFO, String.format("Add %f %f", num1, num2));
             }
             case '-' -> {
                 ans = num1 - num2;
-                logger.log(Level.INFO, String.format("Subtract %d %d", num1, num2));
+                logger.log(Level.INFO, String.format("Subtract %f %f", num1, num2));
             }
             case '*' -> {
                 ans = num1 * num2;
-                logger.log(Level.INFO, String.format("Multiply %d %d", num1, num2));
+                logger.log(Level.INFO, String.format("Multiply %f %f", num1, num2));
             }
             case '/' -> {
                 ans = num1 / num2;
-                logger.log(Level.INFO, String.format("Divide %d %d", num1, num2));
+                logger.log(Level.INFO, String.format("Divide %f %f", num1, num2));
             }
             default -> {
                 System.out.println("Ошибка! Не известный оператор");
