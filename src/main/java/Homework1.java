@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.function.ToDoubleBiFunction;
 
 public class Homework1 {
     public static void task1(int n){
