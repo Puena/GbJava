@@ -1,8 +1,5 @@
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -69,11 +66,50 @@ public class Homework4 {
         }
     }
 
-    public static void Task3() {
+    public static void Task3() throws IOException {
+        boolean end;
+        int action = 0;
+        AnotherCalc simpleCalc = new AnotherCalc();
+        Deque<Double> result = new ArrayDeque<>();
+        do {
+            double num1;
+            if (action == 1 || action == 2) {
+                num1 = result.size() > 0? result.getLast(): 0;
+                System.out.println("Previous number: " + num1);
+            }else num1 = inputNumber("Input first number :");
+            double num2 = inputNumber("Input second number :");
 
+            do {
+                action = (int)inputNumber("Input action: 1. Sum; 2. Subtract; 3. Multiplication; 4. Division");
+            } while (action <= 0 || action >= 5);
+
+            result.addLast(simpleCalc.calculate(num1, num2, action));
+            System.out.printf("Result : %.2f\n\n", result.getLast());
+
+            do {
+                action = (int)inputNumber("What next?\n1. Continue with result\n2. Drop last result and continue \n3. Calculation with new \n4. Exit\n");
+            } while (action <= 0 || action >= 5);
+            end = action == 4;
+            if (action == 2) result.removeLast();
+        }while (!end);
     }
 
-    class AnotherCalc {
+    public static double inputNumber(String message){
+        Scanner scanner;
+        double result;
+        while (true) {
+            scanner = new Scanner(System.in);
+            scanner.reset();
+            System.out.println(message);
+            if (scanner.hasNextDouble()) {
+                result = scanner.nextDouble();
+                break;
+            }
+        }
+        return result;
+    }
+
+    static class AnotherCalc {
         private final Logger logger;
         private final Map<Integer, Function<CalcInput, Double>> operationMap;
         private final FileHandler fh;
